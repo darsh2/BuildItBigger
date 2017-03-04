@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+    <servlet>
+        <servlet-name>SystemServiceServlet</servlet-name>
+        <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+        <init-param>
+            <!--
+            Adding new points can be achieved by specifying a space separated list
+            with full path to Java classes of the endpoints in the param-value.
+            For example: Consider two endpoints Endpoint1, Endpoint2 in the package
+            com.example.backend. To add both endpoints, param-value will have the
+            value - com.example.backend.Endpoint1, com.example.backend.Endpoint2
+            -->
+            <param-name>services</param-name>
+            <param-value>com.example.jokebackend.JokeEndpoint</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SystemServiceServlet</servlet-name>
+        <url-pattern>/_ah/spi/*</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+</web-app>
