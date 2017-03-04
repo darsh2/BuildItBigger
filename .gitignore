@@ -5,3 +5,6 @@
 .DS_Store
 /build
 /captures
+
+# Do not add build folders of other modules
+/*/build
