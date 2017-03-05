@@ -27,4 +27,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.google.android.gms:play-services-ads:10.2.0'
+    compile 'com.google.code.findbugs:jsr305:2.0.1'
+    compile project(path: ':jokebackend', configuration: 'android-endpoints')
 }
