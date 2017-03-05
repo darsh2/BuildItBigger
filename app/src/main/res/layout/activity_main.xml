@@ -4,4 +4,4 @@
     android:name="com.udacity.gradle.builditbigger.MainActivityFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout="@layout/fragment_main" />
+    tools:layout="@layout/fragment_main_activity"/>
