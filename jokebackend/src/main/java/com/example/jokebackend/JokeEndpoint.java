@@ -32,7 +32,12 @@ public class JokeEndpoint {
     @ApiMethod(name = "fetchJoke", path = "fetch_joke")
     public Joke fetchJoke() {
         try {
-            Thread.sleep(5000);
+            /*
+            Add delay of 1 second to ensure progress bar is visible
+            in MainActivityFragmentCommon after clicking "Tell a joke"
+            button.
+             */
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
