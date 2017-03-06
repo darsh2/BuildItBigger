@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.darsh.jokeview.JokeViewActivity;
+import com.udacity.gradle.builditbigger.logger.DebugLog;
 
 /**
  * Created by darshan on 6/3/17.
@@ -28,6 +29,7 @@ public class MainActivityFragmentCommon extends Fragment implements JokeFetcherA
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        DebugLog.logMethod();
         View view = inflater.inflate(R.layout.fragment_main_activity, container, false);
         instructions = (TextView) view.findViewById(R.id.instructions_text_view);
         button = (Button) view.findViewById(R.id.button_tell_joke);
@@ -47,6 +49,7 @@ public class MainActivityFragmentCommon extends Fragment implements JokeFetcherA
     @Override
     public void onStart() {
         super.onStart();
+        DebugLog.logMethod();
         /*
         Prior to start JokeViewActivity, the progressBar is visible while
         the instructions and button are not. On returning from JokeViewActivity,
@@ -56,16 +59,19 @@ public class MainActivityFragmentCommon extends Fragment implements JokeFetcherA
          */
         if (asyncTask == null
                 || asyncTask.getStatus() == AsyncTask.Status.FINISHED) {
+            DebugLog.logMessage("Update UI as false");
             updateUI(false);
         }
     }
 
     protected void getJoke() {
+        DebugLog.logMethod();
         updateUI(true);
         startJokeFetcherTask();
     }
 
     protected void updateUI(boolean isLoading) {
+        DebugLog.logMethod();
         if (isLoading) {
             instructions.setVisibility(View.INVISIBLE);
             button.setVisibility(View.INVISIBLE);
@@ -79,6 +85,7 @@ public class MainActivityFragmentCommon extends Fragment implements JokeFetcherA
     }
 
     protected void startJokeFetcherTask() {
+        DebugLog.logMethod();
         asyncTask = new JokeFetcherAsyncTask(this);
         asyncTask.execute();
     }
@@ -89,6 +96,7 @@ public class MainActivityFragmentCommon extends Fragment implements JokeFetcherA
             return;
         }
 
+        DebugLog.logMethod();
         Intent intent = new Intent(getActivity(), JokeViewActivity.class);
         intent.putExtra(JokeViewActivity.JOKE_EXTRA, joke);
         startActivity(intent);
@@ -97,6 +105,7 @@ public class MainActivityFragmentCommon extends Fragment implements JokeFetcherA
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        DebugLog.logMethod();
         button.setOnClickListener(null);
         asyncTask.cancel(true);
     }
