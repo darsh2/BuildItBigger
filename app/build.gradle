@@ -43,3 +43,48 @@ dependencies {
 
     freeCompile 'com.google.android.gms:play-services-ads:10.2.0'
 }
+
+task runAndroidTests {
+    dependsOn =  [ "runAppEngine", ":app:connectedAndroidTest" ]
+
+    mustRunAfter "runAppEngine"
+    finalizedBy "stopAppEngine"
+
+    doLast {
+        println "Android tests executed"
+    }
+}
+
+task runAppEngine {
+    dependsOn = [ ":jokebackend:appengineStop", ":jokebackend:appengineRun" ]
+
+    /*
+    Cannot use stopAppEngine here since it causes a circular dependency
+    leading to build failing with an exception. Hence use appengineStop
+    task in module jokebackend.
+     */
+    mustRunAfter ":jokebackend:appengineStop"
+
+    /*
+    evaluationDependsOn is required since it's absence leads to gradle throwing
+    an error that reads - Could not find method appengine() on project:':jokebackend'
+     */
+    evaluationDependsOn ":jokebackend"
+    project(":jokebackend") {
+        appengine {
+            daemon true
+        }
+    }
+
+    doLast {
+        println "App engine successfully started"
+    }
+}
+
+task stopAppEngine {
+    dependsOn ":jokebackend:appengineStop"
+
+    doLast {
+        println "App engine successfully stopped"
+    }
+}
