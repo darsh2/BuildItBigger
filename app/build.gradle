@@ -18,7 +18,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
+        /*
+        Set buildConfigField for all buildTypes, ie, freeDebug, paidDebug, freeRelease,
+        paidRelease etc.
+         */
         buildTypes.each {
+            /*
+            10.0.2.2 is localhost's IP address in Android emulator. In order to test this
+            on a real Android device, start the app engine module from Android Studio/terminal.
+            Replace 10.0.2.2 in the line below with the IP address of your network. Ensure
+            device running Android studio and your android device are connected to the same
+            network.
+             */
             it.buildConfigField("String", "GCE_ROOT_URL", "\"http://10.0.2.2:8080/_ah/api/\"")
         }
     }

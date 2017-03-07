@@ -42,6 +42,10 @@ appengine {
     /*
     For testing GCE module on a real android device:
     http://stackoverflow.com/a/39151396
+
+    For testing on a real device, uncomment the line
+    below and start the app engine module from Android
+    Studio/terminal.
      */
     // httpAddress = "0.0.0.0"
 }
