@@ -17,6 +17,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        buildTypes.each {
+            it.buildConfigField("String", "GCE_ROOT_URL", "\"http://10.0.2.2:8080/_ah/api/\"")
+        }
     }
 
     productFlavors {
@@ -44,6 +48,10 @@ dependencies {
     freeCompile 'com.google.android.gms:play-services-ads:10.2.0'
 }
 
+/*
+This tasks automates the running of android tests. The only
+prerequisite is that the Android emulator must be running.
+ */
 task runAndroidTests {
     dependsOn =  [ "runAppEngine", ":app:connectedAndroidTest" ]
 

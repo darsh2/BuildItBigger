@@ -39,4 +39,9 @@ appengine {
         getClientLibsOnBuild = true
         getDiscoveryDocsOnBuild = true
     }
+    /*
+    For testing GCE module on a real android device:
+    http://stackoverflow.com/a/39151396
+     */
+    // httpAddress = "0.0.0.0"
 }
