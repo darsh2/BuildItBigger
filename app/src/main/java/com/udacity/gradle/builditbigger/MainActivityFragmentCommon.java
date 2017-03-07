@@ -107,7 +107,9 @@ public class MainActivityFragmentCommon extends Fragment implements JokeFetcherA
         super.onDestroyView();
         DebugLog.logMethod();
         button.setOnClickListener(null);
-        asyncTask.cancel(true);
+        if (asyncTask != null) {
+            asyncTask.cancel(true);
+        }
     }
 }
 
